@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            background-image: url(https://static.vecteezy.com/system/resources/previews/006/965/779/non_2x/empty-top-wooden-table-and-sakura-flower-with-fog-and-morning-light-background-photo.jpg);
+
+        }
+        .container{
+            height:700px;
+            width: 500px;
+           margin-top: 50px;
+            display: flex;
+            gap:10px;
+            margin: auto;
+            align-items: center;
+            
+
+        }
+        #leftbox,#rightbox{
+            width: 200px;
+            height: 400px;
+            border: 2px  dotted black;
+          background: linear-gradient(pink,red);
+          border-radius: 10px;
+        }
+        
+        .lists{
+            display: flex;
+            height: 50px;
+            width: 120px;
+            
+            border-radius: 10px;
+            background-color: rgb(218, 223, 200);
+            justify-content: center;
+            align-items: center;
+           margin: 15px;
+           margin-left: 30px;
+          margin-top: 25px;
+           text-align: center;
+           
+        }
+        h1{
+            display: flex;
+           align-content: center;
+           align-content: center;
+           
+        }
+        
+    </style>
+</head>
+<body>
+    <h1><u>DRAG AND DROP EVENT</u></h1>
+    <div class="container">
+        <div id="leftbox">
+            <div class="lists" draggable="true">item1 </div>
+            <div class="lists" draggable="true">item2</div>
+            <div class="lists" draggable="true">item3</div>
+            <div class="lists" draggable="true">item4</div>
+            <div class="lists" draggable="true">item5</div>
+        </div>
+        <div id="rightbox"></div>
+    </div>
+    <script>
+        const left = document.getElementById('leftbox');
+        const right = document.getElementById('rightbox');
+        const lists = document.getElementsByClassName('lists');
+
+        let selected = null;
+        console.log(selected);
+
+
+    for (let list of lists) {
+        list.addEventListener("dragstart" ,function(e){
+            console.log(e);
+            selected= e.target;
+            console.log(selected);
+            console.log(e.target);
+
+        })
+    };
+
+    right.addEventListener("dragover" ,function(e){
+        e.preventDefault();
+        console.log( e.preventDefault);
+    });
+
+    right.addEventListener("drop",function(e){
+        if(selected){
+            right.appendChild(selected);
+            //console.log(rightbox.appendChild(selected));
+            selected=null;
+        }
+    });
+
+
+
+     left.addEventListener("dragover",function(e){
+        e.preventDefault();
+        console.log(e.preventDefault);
+    });
+
+
+    left.addEventListener("drop",function(e){
+        if(selected){
+            left.appendChild(selected);
+            selected=null;
+        }
+    }); 
+
+
+
+    
+
+    </script>
+</body>
+</html>
